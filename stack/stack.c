@@ -19,7 +19,7 @@ void printArray(char *array, int sizeOfArray) {
 
     printf("]\n"); // ]
 
-    printf("array address: %p\n\n", array);
+    printf("%s%p\n\n", "array address: ", array);
 }
 
 int setArraySize(){
@@ -28,7 +28,7 @@ int setArraySize(){
 	//get array size by input 
 	printf("%s", "Input size of array:");
 	scanf("%d", &sizeOfArray);
-	printf("sizeOfArray: %d \n", sizeOfArray);
+	printf("%s%d \n", "sizeOfArray: ", sizeOfArray);
 
 	return sizeOfArray;
 }
@@ -36,7 +36,7 @@ int setArraySize(){
 void setArrayElement(char *array, int sizeOfArray){
 	printf("Enter the elements of the array:\n");
     for (int i = 0; i < sizeOfArray; i++){
-    	printf("%d :", i);
+    	printf("[%d]:", i);
     	fflush(stdin);
     	scanf("%c", &array[i]);
     	fflush(stdin);
@@ -57,7 +57,7 @@ bool isEmpty(int sizeOfArray){
 
 char* push(char *array, int *sizeOfArray, char elementOfPush) 
 { 	
-	printf("push element: %c\n", elementOfPush);
+	printf("%s%c\n", "push element:", elementOfPush);
 	
 	*sizeOfArray = *sizeOfArray+1;
 
@@ -71,7 +71,7 @@ char* pop(char *array, int *sizeOfArray)
 { 	
 	if(!isEmpty(*sizeOfArray)){
 
-		printf("pop element: %c\n", array[*sizeOfArray-1]);
+		printf("%s%c\n", "pop element:", array[*sizeOfArray-1]);
 
 		*sizeOfArray = *sizeOfArray-1;
 
@@ -80,7 +80,7 @@ char* pop(char *array, int *sizeOfArray)
 		return newArray;
 
 	}else{
-		printf("no element can pop!\n");
+		printf("%s", "no element can pop!\n");
 		return array;
 	}
 } 
@@ -94,7 +94,7 @@ int main()
 	char  *array = malloc(sizeOfArray * sizeof(*array));
 	//erro handle
     if (!array) {
-        printf("There was a problem with malloc.");
+        printf("%s", "There was a problem with malloc.");
         exit(EXIT_FAILURE);
     }
     //set array elements
@@ -106,13 +106,13 @@ int main()
 		 pushElement;
 
 	while(1){
-		printf("\n> A:push B:pop Others:exit ");
+		printf("\n%s", "> A:push B:pop Others:exit :");
 	    scanf("%c", &choose);
 	    fflush(stdin);
 
 	    if(choose == 'a' || choose == 'A'){
 	    	/* push */
-	    	printf("Input push element:");
+	    	printf("%s", "Input push element: ");
 	    	scanf("%c", &pushElement);
 	    	fflush(stdin);
 		    array = push(array, &sizeOfArray, pushElement);
@@ -126,7 +126,7 @@ int main()
 	    }
 	}
 
-    printf("\nExit\n");
+    printf("\n%s\n", "Exit");
     printArray(array, sizeOfArray);
     free(array);
 
