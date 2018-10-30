@@ -67,11 +67,12 @@ char* push(char *array, int *sizeOfArray, char elementOfPush)
 	return newArray;
 } 
 
-char* pop(char *array, int *sizeOfArray) 
+char* pop(char *array, int *sizeOfArray, char *elementOfPop) 
 { 	
 	if(!isEmpty(*sizeOfArray)){
 
-		printf("%s%c\n", "pop element:", array[*sizeOfArray-1]);
+		*elementOfPop = array[*sizeOfArray-1];
+		printf("%s%c\n", "pop element:", *elementOfPop);
 
 		*sizeOfArray = *sizeOfArray-1;
 
@@ -103,7 +104,7 @@ int main()
     
     /* Push & Pop */
     char choose, 
-		 pushElement;
+		 ElementOfPush, elementOfPop;
 
 	while(1){
 		printf("\n%s", "> A:push B:pop Others:exit :");
@@ -113,13 +114,14 @@ int main()
 	    if(choose == 'a' || choose == 'A'){
 	    	/* push */
 	    	printf("%s", "Input push element: ");
-	    	scanf("%c", &pushElement);
+	    	scanf("%c", &ElementOfPush);
 	    	fflush(stdin);
-		    array = push(array, &sizeOfArray, pushElement);
+		    array = push(array, &sizeOfArray, ElementOfPush);
 		    printArray(array, sizeOfArray);
 	    }else if(choose == 'b' || choose == 'B'){
 	    	/* pop */
-		    array = pop(array, &sizeOfArray);
+		    array = pop(array, &sizeOfArray, &elementOfPop);
+		    // printf("%s%c\n", "elementOfPop:", elementOfPop);
 		    printArray(array, sizeOfArray);
 	    }else{
 	    	break;
@@ -132,7 +134,3 @@ int main()
 
 	return 0;
 }
-
-
-
-
