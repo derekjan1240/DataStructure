@@ -5,7 +5,7 @@ typedef int bool;
 #define true 1
 #define false 0
 
-void printArray(char *array, int sizeOfArray) {
+void PrintArray(char *array, int sizeOfArray) {
 
     printf("Array: ["); // [
 
@@ -22,7 +22,7 @@ void printArray(char *array, int sizeOfArray) {
     printf("%s%p\n\n", "array address: ", array);
 }
 
-int setArraySize(){
+int SetArraySize(){
 	int sizeOfArray;
 
 	//get array size by input 
@@ -33,7 +33,7 @@ int setArraySize(){
 	return sizeOfArray;
 }
 
-void setArrayElement(char *array, int sizeOfArray){
+void SetArrayElement(char *array, int sizeOfArray){
 	printf("Enter the elements of the array:\n");
     for (int i = 0; i < sizeOfArray; i++){
     	printf("[%d]:", i);
@@ -43,7 +43,7 @@ void setArrayElement(char *array, int sizeOfArray){
 	}
 
 	//print array
-	printArray(array, sizeOfArray);
+	PrintArray(array, sizeOfArray);
 }
 
 bool isEmpty(int sizeOfArray){
@@ -55,7 +55,7 @@ bool isEmpty(int sizeOfArray){
 	}
 }
 
-char* push(char *array, int *sizeOfArray, char elementOfPush) 
+char* Push(char *array, int *sizeOfArray, char elementOfPush) 
 { 	
 	printf("%s%c\n", "push element:", elementOfPush);
 	
@@ -67,7 +67,7 @@ char* push(char *array, int *sizeOfArray, char elementOfPush)
 	return newArray;
 } 
 
-char* pop(char *array, int *sizeOfArray, char *elementOfPop) 
+char* Pop(char *array, int *sizeOfArray, char *elementOfPop) 
 { 	
 	if(!isEmpty(*sizeOfArray)){
 
@@ -91,7 +91,7 @@ int main()
 {
 	/* Set original array */
 	//set array size
-	int sizeOfArray = setArraySize();
+	int sizeOfArray = SetArraySize();
 	char  *array = malloc(sizeOfArray * sizeof(*array));
 	//erro handle
     if (!array) {
@@ -99,7 +99,7 @@ int main()
         exit(EXIT_FAILURE);
     }
     //set array elements
-    setArrayElement(array, sizeOfArray);
+    SetArrayElement(array, sizeOfArray);
 
     
     /* Push & Pop */
@@ -116,20 +116,20 @@ int main()
 	    	printf("%s", "Input push element: ");
 	    	scanf("%c", &ElementOfPush);
 	    	fflush(stdin);
-		    array = push(array, &sizeOfArray, ElementOfPush);
-		    printArray(array, sizeOfArray);
+		    array = Push(array, &sizeOfArray, ElementOfPush);
+		    PrintArray(array, sizeOfArray);
 	    }else if(choose == 'b' || choose == 'B'){
 	    	/* pop */
-		    array = pop(array, &sizeOfArray, &elementOfPop);
+		    array = Pop(array, &sizeOfArray, &elementOfPop);
 		    // printf("%s%c\n", "elementOfPop:", elementOfPop);
-		    printArray(array, sizeOfArray);
+		    PrintArray(array, sizeOfArray);
 	    }else{
 	    	break;
 	    }
 	}
 
     printf("\n%s\n", "Exit");
-    printArray(array, sizeOfArray);
+    PrintArray(array, sizeOfArray);
     free(array);
 
 	return 0;
